@@ -17,6 +17,28 @@ function inOrderTraversal(root) {
     return res
 }
 
+// iterative
+function inOrderTraversal(root) {
+  if (!root) return [];
+  
+  let cur = root,
+      res = [],
+      stack = [];
+  
+  while (true) {
+    if (cur) {
+      stack.push(cur);
+      cur = cur.left;
+    } else {
+      if (!stack.length) return res;
+      
+      cur = stack.pop();
+      res.push(cur.value);
+      cur = cur.right;
+    }
+  }
+}
+
 // Test Cases
 test.startProblem("In-Order Traversal")
 var tree1 = new TreeNode(1, new TreeNode(2), new TreeNode(3))
