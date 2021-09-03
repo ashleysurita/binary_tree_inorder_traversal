@@ -18,26 +18,24 @@ function inOrderTraversal(root) {
 }
 
 // iterative
-function inOrderTraversal(root) {
-  if (!root) return [];
-  
-  let cur = root,
-      res = [],
-      stack = [];
-  
-  while (true) {
-    if (cur) {
-      stack.push(cur);
-      cur = cur.left;
-    } else {
-      if (!stack.length) return res;
-      
-      cur = stack.pop();
-      res.push(cur.value);
-      cur = cur.right;
+function iterativeInOrderTraversal(root) {
+    let res = []
+    let stack = []
+    let curr = root
+    while(curr || stack.length){
+       if (curr) {
+            stack.push(curr)
+            curr = curr.left
+       } else if (stack.length) {
+           let first = stack.pop()
+           res.push(first.value)
+           curr = first.right
+       }
     }
-  }
+    
+    return res
 }
+
 
 // Test Cases
 test.startProblem("In-Order Traversal")
